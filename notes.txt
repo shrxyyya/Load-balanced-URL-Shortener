@@ -1,0 +1,56 @@
+#   long url/Original url = https://google.com/absxys/kjeren
+#   its short url form = http://localhost:5000/<short_code>
+#   localhost = 127.0.0.1   => basically the default server
+#   5000  => port on which flask runs  =>  127.0.0.1:5000 => the port/address on which the application will run.
+#   <short_code> will be the code generated => has random letters + numbers => use Sqids for this
+#   the short url is to then redirect the user to the original url
+
+#   since we are running the mysql docker container on port 3307, make sure we have a mysql server created on port 3307 and the database name is url_shortener
+
+Database configuration using environment variables for security:
+#   This allows us to use our database credentials in a .env file instead of hardcoding them in our script.
+
+For running separate mysql and flask application docker containers:
+#   The host is set to 'mysql-container' which is the name of the docker MySQL container => make necessary changes in the .env and main.py files
+#   There is no env variable for port
+#   After building the image for flask application, first run the docker container for mysql and then run the docker container for the flask application.
+#   Once, the containers are successfully up and runnning, go to http://localhost:5000 to see the application running.
+
+
+
+For local development:
+#   Set host to 'localhost' (or the appropriate host for your MySQL server) and port to 5000.
+Add this to the .env file after MYSQL_HOST:
+MYSQL_PORT=5000
+Add this to the main.py file after defining host:
+'port': os.getenv('MYSQL_PORT', '5000'),
+#   Run the main.py file to start the application => view the running application in http://localhost:5000
+
+
+
+For running mysql + flask together using Docker-compose:
+#   My docker-compose.yml file has env variables set inside it, but you can also use the .env file
+Make this change:
+services:
+  flask-app:
+    env_file:
+      - .env
+#   Run the docker-compose commands and then view the application in http://127.0.0.1:5000
+
+
+# it is necessary to create and run mysql as a docker container as containers can only communicate with other services via containers
+
+
+
+RUNNING MYSQL:
+# Preferrably => Create a separate server:
+  Hostname = 127.0.0.1
+  Port = 3307                          (this is because I already have a different server on port 3306)
+
+Then enter the server details wherever necessary.
+The server is not running by default. It runs when we run docker-compose.
+
+
+
+Future work:
+- Use docker volumes so as to be able to store data in mysql container  =>  even when application stops, data persists  =>  mainly used for data persistence
