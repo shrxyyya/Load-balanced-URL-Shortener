@@ -5,7 +5,7 @@ services:
     image: mysql:latest
     container_name: mysql-container
     environment:
-      MYSQL_ROOT_PASSWORD: 'had%CYM3#schcs'  # Consider using a strong password in production
+      MYSQL_ROOT_PASSWORD: '<your_mysql_password>'  # Consider using a strong password in production
       MYSQL_DATABASE: url_shortener
     ports:
       - "3307:3306"
@@ -27,5 +27,5 @@ services:
     environment:
       - MYSQL_HOST=mysql
       - MYSQL_USER=root
-      - MYSQL_PASSWORD=had%CYM3#schcs
+      - MYSQL_PASSWORD=<your_mysql_password>
       - MYSQL_DATABASE=url_shortener
