@@ -45,7 +45,7 @@ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/shrxyyya/Load-balanced-URL-Shortener.git
 cd Load-balanced-URL-Shortener
 ```
 
@@ -83,7 +83,7 @@ kubectl get pods -w
 # Terminal 1: Start minikube tunnel (keep this terminal open)
 minikube tunnel
 
-# Terminal 2: Forward MySQL port (keep this terminal open)
+# Terminal 2: Forward MySQL port (keep this terminal open) - because my server was created on port 3307
 kubectl port-forward service/mysql-service 3307:3306
 
 # Terminal 3: Get the service URL
