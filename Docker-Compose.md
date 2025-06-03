@@ -20,7 +20,7 @@ Ensure you have the following installed on your system:
 
 ### **Step 1: Clone the Repository**
 ```sh
-git clone -b docker-compose <repository_url>
+git clone -b docker-compose https://github.com/shrxyyya/Load-balanced-URL-Shortener.git
 cd Load-balanced-URL-Shortener
 ```
 
