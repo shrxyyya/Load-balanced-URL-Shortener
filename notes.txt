@@ -49,8 +49,3 @@ RUNNING MYSQL:
 
 Then enter the server details wherever necessary.
 The server is not running by default. It runs when we run docker-compose.
-
-
-
-Future work:
-- Use docker volumes so as to be able to store data in mysql container  =>  even when application stops, data persists  =>  mainly used for data persistence
