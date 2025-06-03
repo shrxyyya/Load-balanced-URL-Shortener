@@ -20,8 +20,8 @@ Ensure you have the following installed on your system:
 
 ### **Step 1: Clone the Repository**
 ```sh
-git clone -b <branch_name> <repository_url>
-cd <repository_url>
+git clone -b docker-compose <repository_url>
+cd Load-balanced-URL-Shortener
 ```
 
 ### **Step 2: Configure Environment Variables**
