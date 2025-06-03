@@ -16,7 +16,7 @@ app = Flask(__name__)
 db_config = {
     'host': os.getenv('MYSQL_HOST', 'mysql-service'),
     'user': os.getenv('MYSQL_USER', 'root'),
-    'password': os.getenv('MYSQL_PASSWORD', 'had%CYM3#schcs'),
+    'password': os.getenv('MYSQL_PASSWORD', '<your_mysql_password>'),  # Replace with your MySQL password
     'database': os.getenv('MYSQL_DATABASE', 'url_shortener'),
     'port': int(os.getenv('MYSQL_PORT', '3307')),  # Using environment variable for port
     'auth_plugin': 'mysql_native_password'

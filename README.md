@@ -119,14 +119,18 @@ This will:
 # Terminal 4: Monitor CPU usage
 watch -n 2 "kubectl top pods | grep urlshortener"
 
+# -- OR --
+# Terminal 4: Monitor HPA - Check current replica set information
+kubectl get hpa urlshortener-hpa
+
 # Terminal 3: Run basic stress test
-python stress_test.py
+./basic_stress_test.sh
 ```
 
 2. Advanced Stress Test:
 ```bash
 # Terminal 3: Run advanced stress test
-python adv_stress_test.py
+./adv_stress_test.sh
 ```
 
 The stress tests will:
@@ -144,12 +148,6 @@ kubectl logs -l app=urlshortener
 
 # View MySQL logs
 kubectl logs -l app=mysql
-```
-
-2. Monitor HPA:
-```bash
-# Check current replica set information
-kubectl get hpa urlshortener-hpa
 ```
 
 ## Troubleshooting
