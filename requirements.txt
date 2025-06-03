@@ -1,0 +1,4 @@
+flask
+mysql-connector-python
+sqids
+python-dotenv

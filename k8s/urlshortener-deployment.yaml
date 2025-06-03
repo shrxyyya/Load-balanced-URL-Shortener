@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: urlshortener-deployment
+  labels:
+    app: urlshortener
+spec:
+  replicas: 3  # Running 3 instances for high availability
+  selector:
+    matchLabels:
+      app: urlshortener
+  template:
+    metadata:
+      labels:
+        app: urlshortener
+    spec:
+      containers:
+      - name: urlshortener
+        image: urlshortener:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "256Mi"
+        envFrom:
+        - configMapRef:
+            name: urlshortener-config
+        env:
+        - name: MYSQL_HOST
+          value: mysql-service  # Points to the MySQL ClusterIP Service
+        - name: MYSQL_PORT
+          value: "3306"
+        - name: MYSQL_USER
+          value: root
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql-root-password
+        - name: MYSQL_DATABASE
+          value: url_shortener
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: urlshortener-service
+spec:
+  selector:
+    app: urlshortener
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 5000
+  type: LoadBalancer  # Exposes the service externally 

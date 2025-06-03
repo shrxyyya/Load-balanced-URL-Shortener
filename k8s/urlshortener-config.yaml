@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: urlshortener-config
+data:
+  MYSQL_HOST: "mysql-service"
+  MYSQL_PORT: "3306"
+  MYSQL_DATABASE: "url_shortener"
+  FLASK_ENV: "production"
+  MIN_URL_LENGTH: "6" 
